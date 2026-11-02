@@ -207,14 +207,14 @@ const DATA = [
  {id:"comportamentales", t:"Competencias comportamentales", w:"", folder:"14Cyg08JcqIVGjrPeNQa5lCUBCdJlj3tZ", comps:[
   {t:"Compromiso social e institucional", ok:false, nota:"Borrador del informe de metas en revisión",
    c:"Lidera el seguimiento de metas del componente de proyecto de vida e inclusión.",
-   ev:[["u","Página Construyendo Sueños","https://sites.google.com/julioperezferrero.edu.co/construyendoparaunfuturo/inicio"],
+   ev:[["x","Página Construyendo Sueños","https://sites.google.com/julioperezferrero.edu.co/construyendoparaunfuturo/inicio"],
        ["d","Guías de Proyecto de Vida 0 a 11","1WNcTIwRfQiLZfY7X4DLwJ9cp9waGrmSP"],["f","Programa Proyecto de Vida 2026","1obJHvVIKJIfJqi7XJiSFOwVxxa7V89xx"],
        ["d","Comunicados internos","1RiqeHi35BI4eMgU1tTAoIRXVIgRNRIDq"],["f","Presentación de proyectos de vida (1)","1zsEu90PI9Unq4ATdJdCooZXGLw0TwRn3"],
        ["f","Presentación de proyectos de vida (2)","1rzqJbWWH8Cn2b8I5MjxLCoaOt1Jechzd"]]},
   {t:"Orientación al logro", ok:false, nota:"Pendiente: evidencia con familias en el vivero",
    c:"Involucra a estudiantes y familias en la reactivación del Vivero Recuperando Ando.",
    ev:[["f","Evidencias del proyecto que lidero","1gdBdTYFkqxN9vk3uPBm7cxI5HNJZdc68"],["u","Sitio Recuperando Ando","https://deysirolon-sys.github.io/recuperandoando"],
-       ["u","Wix Recuperando Ando","https://dyurolf.wixsite.com/recuperandoandoqr"]]},
+       ["x","Wix Recuperando Ando","https://dyurolf.wixsite.com/recuperandoandoqr"]]},
   {t:"Liderazgo", ok:true,
    c:"Lidera proyectos de investigación institucionales y participa en escenarios externos.",
    ev:[["d","EPA Julista ICFES","1-Snwo6jzNkI7Ywzk1koMI4e9TB6OSrCP"],["f","Red Julista Saber 11","1tURyakIvurFQ1u0WAXi7anHnoY9tRriI"],
@@ -223,7 +223,7 @@ const DATA = [
  ]}
 ];
 
-const ICON={f:"📄",d:"📁",u:"🌐",ig:"📸"};
+const ICON={f:"📄",d:"📁",u:"🌐",ig:"📸",x:"🔗"};
 function urls(kind,ref){
   if(kind==="f") return {embed:`https://drive.google.com/file/d/${ref}/preview`, open:`https://drive.google.com/file/d/${ref}/view`};
   if(kind==="d") return {embed:`https://drive.google.com/embeddedfolderview?id=${ref}#grid`, open:`https://drive.google.com/drive/folders/${ref}`};
@@ -244,7 +244,8 @@ DATA.forEach(g=>{
       total++;
       const b=document.createElement("button"); b.className="ev"; b.type="button";
       b.innerHTML=`<i aria-hidden="true">${ICON[k]}</i>${label}`;
-      b.onclick=()=>openViewer(label,urls(k,ref));
+      b.onclick=()=>{ if(k==="x"){ window.open(ref,"_blank","noopener"); } else { openViewer(label,urls(k,ref)); } };
+      if(k==="x") b.title="Se abre en una pestaña nueva";
       evs.appendChild(b);
     });
     el.appendChild(evs); grid.appendChild(el);
@@ -265,4 +266,3 @@ dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
 </script>
 </body>
 </html>
-
